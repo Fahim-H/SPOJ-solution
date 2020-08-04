@@ -8,8 +8,6 @@ using namespace std;
 int box[MAX];
 void sieve(){
     vector <bool> isPrime(MAX,true);
-    isPrime[0]=isPrime[1]=false;
-    for(ll i=4;i<=MAX;i+=2)isPrime[i]=false;
 
     for(ll i=3; i*i <= MAX; i += 2){
         if(isPrime[i]){
