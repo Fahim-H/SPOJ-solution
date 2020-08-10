@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+#define MAX 90000000
+typedef long long int ll;
+using namespace std;
+bool primes[90000001];
+vector <ll> isPrime;
+void sieve(){
+    primes[0]=primes[1]=true;
+    primes[2]=false;
+    for(int i=4;i<=MAX;i += 2)primes[i]=true;
+
+    for(int i=3;i*i<=MAX;i += 2){
+        if(!primes[i]){
+            for(int j=i*i;j<=MAX;j += i){
+                primes[j]=true;
+            }
+        }
+    }
+    isPrime.push_back(2);
+    for(int i=3;i<=MAX;i+=2)if(primes[i]==false)isPrime.push_back(i);
+}
+int main(){
+    sieve();
+    int t; cin>>t;
+    while(t--){
+        int num; cin>>num;
+        cout<<isPrime[num-1]<<endl;
+    }
+    return 0;
+}
