@@ -1,0 +1,32 @@
+/https://www.spoj.com/problems/RPLD/
+
+#include<bits/stdc++.h>
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+using namespace std;
+
+ 
+int main()
+{
+ 
+    optimize();
+    int tc; cin>>tc;
+ 
+    for(int i=1; i<=tc; i++){
+        int n, r; cin>>n>>r;
+ 
+        map<pair<int, int>, bool> vis;
+ 
+        bool is = true;
+        while(r--){
+            int i,c;
+            cin>>i>>c;
+ 
+            if(vis[{i, c}] )is = false;
+            vis[{i, c}] = true;
+        }
+ 
+        if(is == true)cout<<"Scenario #"<<i<<": possible"<< endl;
+        else cout<<"Scenario #"<<i<<": impossible"<< endl;
+ 
+    }
+}
