@@ -1,0 +1,32 @@
+//https://www.spoj.com/problems/REDARR2/
+#include<bits/stdc++.h>
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+typedef long long int ll;
+using namespace std;
+
+int main()
+{
+    optimize();
+    int tc; cin>>tc;
+
+    while(tc--){
+        priority_queue <ll> pq;
+        ll cost = 0;
+        ll n; cin>>n;
+        for(int i=0; i<n; i++){
+            ll in; cin>>in;
+            in *= -1;
+            pq.push(in);
+        }
+        while(true){
+            if(pq.size() == 1)break;
+            ll num1 = pq.top(); pq.pop();
+            ll num2 = pq.top(); pq.pop();
+            ll sum =  num1+num2; //sum *= -1;
+            cost += (num1+num2);
+            pq.push(sum);
+        }
+        cout<<-1*cost<<endl;
+    }
+    return 0;
+}
