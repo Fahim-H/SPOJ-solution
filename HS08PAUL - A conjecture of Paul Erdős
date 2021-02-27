@@ -1,0 +1,57 @@
+//https://www.spoj.com/problems/HS08PAUL/
+
+#include <bits/stdc++.h>
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define endl '\n'
+#define mod 10000007
+using namespace std;
+
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+typedef long long int ll;
+typedef tree< ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update > ordered_set;
+/// cout<<*X.find_by_order(1)<<endl; // finds the kth element
+/// cout<<X.order_of_key(-5)<<endl;  // number of items in a set that are strictly smaller than our item
+
+const int MAX = 1e7+10;
+vector <int> primes;
+bitset<MAX> isPrime;
+int ans[MAX];
+
+void sieve(){
+    for(int i=3; i<=MAX; i += 2)isPrime[i]=true;
+    isPrime[2] = true;
+
+    for(int i=3; i*i<=MAX; i+=2){
+        if(isPrime[i]){
+            for(int j=i*i; j<=MAX; j+=i){
+                isPrime[j]=false;
+            }
+        }
+    }
+    primes.push_back(2);
+    for(int i=3; i<=MAX; i+=2)if(isPrime[i])primes.push_back(i);
+}
+
+
+int main(){
+    optimize();
+    sieve();
+
+    for(int x=1; x<=3200; x++){
+        for(int y=1; y<=60; y++){
+            int curr = (x*x) + (y*y*y*y);
+            if(curr > 1e7)continue;
+            if(isPrime[curr])ans[curr]=1;
+        }
+    }
+    for(int i=1; i<=MAX; i++)ans[i] += ans[i-1];
+
+    int tc; cin>>tc;
+    while(tc--){
+        int n; cin>>n;
+        cout<<ans[n]<<endl;
+    }
+
+    return 0;
+}
