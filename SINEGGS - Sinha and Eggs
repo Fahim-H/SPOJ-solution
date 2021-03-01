@@ -1,0 +1,27 @@
+//https://www.spoj.com/problems/SINEGGS/
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#define endl '\n'
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define fraction() cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield);
+typedef long long int ll;
+ 
+map <ll, bool> square;
+int main(){
+    optimize();
+ 
+    for(int i=1; i<=32*1e4; i++){
+        square[1LL*i*i] = 1;
+    }
+ 
+    int t; cin>>t;
+    while(t--){
+        ll n; cin>>n;
+ 
+        (square[n])? cout<<"YES"<<endl : cout<<"NO"<<endl;
+    }
+ 
+    return 0;
+}
